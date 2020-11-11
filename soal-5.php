@@ -21,29 +21,26 @@ echo $buah[$i]["NAMA"].'<br>';
 echo "<br>";
 echo 'Soal 4b <br><br>';
 
-$filterBy = 'k';
-
-// $result = array_filter($buah[0]['NAMA'], function ($item) use ($input) {
-//     if (stripos($item, $input) !== false) {
-//         return true;
-//     }
-//     return false;
-// });
-
-// $new = array_filter($buah, function ($var) {
-//     return ($var[1]['NAMA'] == 'k');
-// });
-
-
-// $req = array_filter($buah, function ($v) {
-//     return in_array('req', $v);
-// });
-
-$filter = array('K');
-$newArray = array_filter($buah, function($e) use ($filter){
-                                                //    ^ import criteria
-    return in_array($e['NAMA'], $filter);
+$like = 'k';
+$result = array_filter($buah, function ($item) use ($like) {
+    if (stripos($item['NAMA'], $like) !== false) {
+        return true;
+    }
+    return false;
 });
-print_r($newArray);
+echo '<pre>';
+print_r($result);
+echo '</pre>';
 
+echo '<br><br>Soal 4c<br>';
+$like2 = 'MANIS';
+$result2 = array_filter($buah, function ($item2) use ($like2) {
+    if (stripos($item2['RASA'], $like2) !== false && $item2['HARGA'] <= 10000) {
+        return true;
+    }
+    return false;
+});
+echo '<pre>';
+print_r($result2);
+echo '</pre>';
 ?>
